@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: temperature_sensor-deployment
+  labels:
+    app: temperature_service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: temperature_service
+    template:
+      metadata:
+        labels:
+          app: temperature_service
+      spec:
+        containers:
+        - name: temperature_service
+        - image: xxx
+          ports:
+          - containerPort: 3000
