@@ -13,4 +13,4 @@ docker build ./IoT_handler/ -t minninnewah/iot_handler
 docker build ./IoT_handler_evil/ -t minninnewah/iot_handler_evil
 ```
 
-Afterwards, they have to been push to the DockerHub.
+Afterwards, they have to been pushed to the DockerHub.
