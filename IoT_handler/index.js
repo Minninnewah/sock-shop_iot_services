@@ -5,7 +5,7 @@ let app = express();
 
 let temp = 0;
 
-async function readTemperature() {
+function readTemperature() {
   try {
     const response = await got('http://temperature-sensor:3000/');//temperature-sensor
     let json = JSON.parse(response.body)
@@ -16,10 +16,12 @@ async function readTemperature() {
   }
 }
 
-app.get('/temperature', function(req, res) {
-  res.json({temp: temp})
-  console.log("Request temp:" + String(temp))
+app.get('/temperature', async function(req, res) {
+  const response = await got('http://temperature-sensor:3000/');//temperature-sensor
+  let json = JSON.parse(response.body)
+  res.json({temp: json.temp})
+  //console.log("Request temp:" + String(json.temp))
 })
 
-setInterval(readTemperature, 10* 1000)
+//setInterval(readTemperature, 10* 1000)
 app.listen(process.env.PORT || 3001);
