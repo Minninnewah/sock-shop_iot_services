@@ -5,9 +5,9 @@ let app = express();
 
 let temp = 0;
 
-function readTemperature() {
+async function readTemperature() {
   try {
-    const response = await got('http://temperature-sensor:3000/');//temperature-sensor
+    let response = await got('http://temperature-sensor:3000/');//temperature-sensor
     let json = JSON.parse(response.body)
     temp = json.temp
     console.log("Got temp:" + String(temp))
@@ -17,7 +17,7 @@ function readTemperature() {
 }
 
 app.get('/temperature', async function(req, res) {
-  const response = await got('http://temperature-sensor:3000/');//temperature-sensor
+  let response = await got('http://temperature-sensor:3000/');//temperature-sensor
   let json = JSON.parse(response.body)
   res.json({temp: json.temp})
   //console.log("Request temp:" + String(json.temp))
